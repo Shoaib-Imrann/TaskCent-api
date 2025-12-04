@@ -1,12 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { setDefaultResultOrder } from 'dns';
 import sequelize from './config/sequelize.js';
 import authRoutes from './routes/authRoutes.js';
 import taskRoutes from './routes/taskRoutes.js';
 import { authLimiter, apiLimiter } from './middleware/rateLimiter.js';
 
 dotenv.config();
+setDefaultResultOrder('ipv4first');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
