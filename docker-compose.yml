@@ -1,0 +1,30 @@
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app:cached
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    env_file:
+      - .env
+    command: pnpm run dev
+    profiles: ["dev"]
+
+  app-prod:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    command: pnpm start
+    profiles: ["prod"]
