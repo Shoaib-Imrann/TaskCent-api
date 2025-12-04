@@ -13,6 +13,9 @@ setDefaultResultOrder('ipv4first');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
+// Trust proxy for Railway
+app.set('trust proxy', 1);
+
 // Middleware
 app.use(cors({
   origin: process.env.CLIENT_URL,
